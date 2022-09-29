@@ -50,7 +50,7 @@ allocate my time to maximize my overall GPA.
 - As a user, I want to be able to calculate my current grades of one course even though there are still assignments pending.
 - As a user, I want to be able to set my goal (target grades) for a course.
 - As a user, I want to be able to predict a minimum grade I must get for a given assessment category in order to satisfy my target final grade,
-- As a user, I want to be able to calculate my final grade once the course is finished
+- As a user, I want to be able to calculate my final grade once the course is finished.
 - As a user, I want to be able to calculate the GPA of my chosen course.
 
 
