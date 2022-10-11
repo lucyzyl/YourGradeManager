@@ -25,6 +25,7 @@ public class User {
     public String getUserName() {
         return userName;
     }
+
     public ArrayList<Course> getCourses() {
         return courses;
     }
