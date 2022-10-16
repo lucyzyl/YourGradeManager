@@ -17,6 +17,7 @@ public class YourGradeManager {
     }
 
 
+    //MODIFIES: this
     //EFFECTS: processes user input
     public void runYourGradeCalculator() {
         boolean runApplication = true;
@@ -58,7 +59,7 @@ public class YourGradeManager {
         System.out.println("\nq -> Quit");
     }
 
-    //MODIFIES: user
+    //MODIFIES: this, user
     //EFFECTS: create a course with its course name and assessment weight set up
     //Then add the course to the user's course list
     public void createCourse(User user) {
@@ -73,7 +74,7 @@ public class YourGradeManager {
             System.out.println("Please enter the assessment type");
             input = new Scanner(System.in);
             String assessmentType = input.next();
-            System.out.println("Please enter the assessment weight");
+            System.out.println("Please enter the assessment weight between 0 and 1");
             double weight = input.nextDouble();
             Assessment assessment = new Assessment(assessmentType, weight);
             course.addAssessment(assessment);
@@ -82,7 +83,7 @@ public class YourGradeManager {
         System.out.println(course.getCourseName() + " is set up");
     }
 
-    //MODIFIES: user
+    //MODIFIES: this
     //EFFECTS: add grades for an assessment category of a given course.
     public void addGrades(User user) {
         System.out.println("Which course do you want to add grade for");
@@ -99,7 +100,7 @@ public class YourGradeManager {
     }
 
 
-    //MODIFIES: course
+    //MODIFIES: this, course
     //EFFECTS: add grade to an given assessment
     public void addGradesToAssessment(Course course) {
         boolean contiune = true;
@@ -110,7 +111,7 @@ public class YourGradeManager {
             String assessmentName = input.nextLine();
             if (!assessmentName.equals("q")) {
                 Assessment assessment = searchAssessment(assessmentName, course);
-                System.out.println("Please enter your assignment grade");
+                System.out.println("Please enter your assignment grade in 100 point scale");
                 double grade = input.nextDouble();
                 assessment.addAssignmentGrade(grade);
                 assessment.calculateAssessmentGrade();

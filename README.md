@@ -6,9 +6,9 @@
 **"Your Grade Manager"**, as its name suggested, 
 is an application dedicated to calculating your
 grades. It allows you to:
-- Create your own course and add the assessments with their weights to the course.
+- Create your own course and add assessments with their weights to the course.
 - Record the assessment grades of a course.
-- Calculating the final grade of a course based on the assessment grades and
+- Calculate the final grade of a course based on the assessment grades and
 weights.
 
 ### Who will use it?
@@ -23,13 +23,14 @@ for undergraduate students who might need to apply for
 the co-op or post-graduate program.
 
 ### Why is this project of interest to you?
-Optimization is an important part of my life and my GPA is not an exception.
+Optimization is an important part of my life and using optimization to maximize my GPA is a tedious calculation I have 
+to do almost every single time when there is an assignment grade released.
 The current overall mark of one course tells me whether I need to spend more time on that
-course and allows me better allocate my time. However, It is tedious to type grades and their
+course. It allows me to better allocate my time. However, It is tedious to type grades and their
 associated weights every single time you want to know your current grade for a course. Therefore,
 my project idea comes up. What if there is an application that allows me to create my own courses
 with every assessment categories and their associated weights established. Then when there 
-is a grade published, I can add the grade to the assessment and the application automatically
+is a grade published, I can add the grade to the assessment and the application will automatically
 tells me my current mark. This application will definitely save me from my tedious and
 time-consuming daily basis.
 
