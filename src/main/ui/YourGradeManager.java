@@ -54,9 +54,11 @@ public class YourGradeManager {
     //EFFECTS: displays menu of options to user
     public void displayOptions() {
         System.out.println("\nSelect from");
-        System.out.println("\nc -> Create a course");
+        System.out.println("----------------------------------------------------");
+        System.out.println("c -> Create a course");
         System.out.println("\na -> Add grades to an existing course");
         System.out.println("\nq -> Quit");
+        System.out.println("----------------------------------------------------");
     }
 
     //MODIFIES: this, user
@@ -86,7 +88,7 @@ public class YourGradeManager {
     //MODIFIES: this
     //EFFECTS: add grades for an assessment category of a given course.
     public void addGrades(User user) {
-        System.out.println("Which course do you want to add grade for");
+        System.out.println("Which course do you want to add grade for\n");
         printCourse(user);
         input = new Scanner(System.in);
         String courseName = input.nextLine();
@@ -101,11 +103,11 @@ public class YourGradeManager {
 
 
     //MODIFIES: this, course
-    //EFFECTS: add grade to an given assessment
+    //EFFECTS: add grade to a given assessment
     public void addGradesToAssessment(Course course) {
         boolean contiune = true;
         while (contiune) {
-            System.out.println("which assessment do you want to add grade for");
+            System.out.println("which assessment do you want to add grade for\n");
             printAssessment(course);
             input = new Scanner(System.in);
             String assessmentName = input.nextLine();
@@ -116,8 +118,10 @@ public class YourGradeManager {
                 assessment.addAssignmentGrade(grade);
                 assessment.calculateAssessmentGrade();
                 course.calculateCourseGrade();
-                System.out.println("Your grades are added to the assessment: " + assessment.getName());
-                System.out.println("Your course grade is " + course.getCourseGrade());
+                System.out.println("Your grades are added to the assessment: " + assessment.getName() + "\n");
+                System.out.println("----------------------------------------------------");
+                System.out.println("Your course grade is " + course.getCourseGrade() + "%");
+                System.out.println("----------------------------------------------------\n");
             } else {
                 System.exit(0);
             }
@@ -127,22 +131,26 @@ public class YourGradeManager {
     //EFFECTS: print all courses in the user's course list and a line that allows user to type q to quit.
     public void printCourse(User user) {
         System.out.println("Select from");
+        System.out.println("----------------------------------------------------");
         int size = user.getCourses().size();
         for (int i = 0; i <= size - 1; i++) {
             System.out.println(user.getCourses().get(i).getCourseName());
         }
-        System.out.println("q -> quit if you can't find the course you want");
+        System.out.println("----------------------------------------------------");
+        System.out.println("\nq -> Quit");
     }
 
 
     //EFFECTS: print all assessment in the course's assessment list and a line that allows user to type q to quit.
     public void printAssessment(Course course) {
         System.out.println("Select from");
+        System.out.println("----------------------------------------------------");
         int size = course.getCourseAssessments().size();
         for (int i = 0; i <= size - 1; i++) {
             System.out.println(course.getCourseAssessments().get(i).getName());
         }
-        System.out.println("q -> quit");
+        System.out.println("----------------------------------------------------");
+        System.out.println("\nq -> Quit");
     }
 
 
