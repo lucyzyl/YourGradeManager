@@ -1,16 +1,20 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 
 // Represents an assessment having an assessment name, an assessment weight (0 < weight <= 1)
 // and grade of the assessment. The grade of the assessment is the weighted grade.
 // An assessment with grade 100 and weight 0.2 have an assessment grade of 20)
-public class Assessment {
+public class Assessment implements Writable {
 
-    private ArrayList<Double> assignmentScores;         //the collection of assignment grades within an assessment
     private String assessmentName;                      //the name of an assessment
     private double weight;                              //the weight of an assessment
     private double assessmentGrade;                     //the weighted garde of an assessment
+    private ArrayList<Double> assignmentScores;         //the collection of assignment grades within an assessment
 
     //REQUIRES: 0 < weight <= 1
     //EFFECTS: construct an assessment with its name, weight, a list of assignment score and assessment weighted grade.
@@ -53,6 +57,7 @@ public class Assessment {
         return true;
     }
 
+    //
     //getters:
     public String getName() {
         return assessmentName;
@@ -70,4 +75,23 @@ public class Assessment {
         return assessmentGrade;
     }
 
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("Assessment Name", assessmentName);
+        json.put("Assessment Weight", weight);
+        json.put("Assessment Grade", assessmentGrade);
+        json.put("Mark Breakdown", assignmentScoresToJson());
+        return json;
+    }
+
+    // EFFECTS: returns assignment scores in this assessment as a JSON array
+    private JSONArray assignmentScoresToJson() {
+        JSONArray jsonArray = new JSONArray();
+        JSONObject json = new JSONObject();
+        for (double score : assignmentScores) {
+            jsonArray.put(score);
+        }
+        return jsonArray;
+    }
 }

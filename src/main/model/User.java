@@ -1,9 +1,13 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 
 //Represents a user having a username and a collection of courses
-public class User {
+public class User implements Writable {
 
     private String userName;              //the name of the user
     private ArrayList<Course> courses;    //the collection of courses
@@ -28,6 +32,24 @@ public class User {
 
     public ArrayList<Course> getCourses() {
         return courses;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("Username", userName);
+        json.put("Courses", courseToJson());
+        return json;
+    }
+
+    // EFFECTS: returns courses in this user as a JSON array
+    private JSONArray courseToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Course c : courses) {
+            jsonArray.put(c.toJson());
+        }
+        return jsonArray;
     }
 
 }

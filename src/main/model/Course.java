@@ -1,11 +1,15 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 
 import static java.lang.Math.round;
 
 //Represents a course having a course name, a collections of assessment and the current course grade.
-public class Course {
+public class Course implements Writable {
 
     private String courseName;                        //the name of the course
     private ArrayList<Assessment> courseAssessments;  //the collection of assessments
@@ -56,4 +60,26 @@ public class Course {
     public ArrayList<Assessment> getCourseAssessments() {
         return courseAssessments;
     }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("Course Name", courseName);
+        json.put("Course Assessments", assessmentToJson());
+        return json;
+    }
+
+    // EFFECTS: returns assessments in this course as a JSON array
+    private JSONArray assessmentToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Assessment a : courseAssessments) {
+            jsonArray.put(a.toJson());
+        }
+        return jsonArray;
+    }
+
+
+
+
 }

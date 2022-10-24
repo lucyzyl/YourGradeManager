@@ -3,13 +3,21 @@ package ui;
 import model.Assessment;
 import model.Course;
 import model.User;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 // a grade calculator application
 public class YourGradeManager {
+    private static final String JSON_STORE = "./data/user.json";
+    private User user;
     private Scanner input;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
     // EFFECTS: runs the grade calculator application
     public YourGradeManager() {
@@ -23,7 +31,7 @@ public class YourGradeManager {
         boolean runApplication = true;
         String command;
 
-        User user = signUp();
+        signUp();
 
         while (runApplication) {
             displayOptions();
@@ -42,13 +50,25 @@ public class YourGradeManager {
     }
 
     //EFFECTS: create an account for the user with its username and return the user just created
-    public User signUp() {
-        System.out.println("Enter your username to create your account");
+    public void signUp() {
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
         input = new Scanner(System.in);
-        String userName = input.nextLine();
-        User user = new User(userName);
-        System.out.println("Welcome " + userName);
-        return user;
+        System.out.println("\nSelect from");
+        System.out.println("----------------------------------------------------");
+        System.out.println("s -> Sign up");
+        System.out.println("\nl -> Log in");
+        String choice = input.nextLine();
+
+        if (choice.equals("s")) {
+            System.out.println("Enter your username to create your account");
+            String userName = input.nextLine();
+            user = new User(userName);
+            System.out.println("Welcome " + userName);
+        } else {
+            System.out.println("Reloading the existing user");
+            loadUser();
+        }
     }
 
     //EFFECTS: displays menu of options to user
@@ -111,7 +131,7 @@ public class YourGradeManager {
             printAssessment(course);
             input = new Scanner(System.in);
             String assessmentName = input.nextLine();
-            if (!assessmentName.equals("q")) {
+            if (!assessmentName.equals("q") && !assessmentName.equals("s")) {
                 Assessment assessment = searchAssessment(assessmentName, course);
                 System.out.println("Please enter your assignment grade in 100 point scale");
                 double grade = input.nextDouble();
@@ -122,8 +142,10 @@ public class YourGradeManager {
                 System.out.println("----------------------------------------------------");
                 System.out.println("Your course grade is " + course.getCourseGrade() + "%");
                 System.out.println("----------------------------------------------------\n");
-            } else {
+            } else if (assessmentName.equals("q")) {
                 System.exit(0);
+            } else if (assessmentName.equals("s")) {
+                saveUser();
             }
         }
     }
@@ -151,6 +173,7 @@ public class YourGradeManager {
         }
         System.out.println("----------------------------------------------------");
         System.out.println("\nq -> Quit");
+        System.out.println("\ns -> save user to file");
     }
 
 
@@ -176,6 +199,36 @@ public class YourGradeManager {
         }
         throw new NoSuchElementException("The assessment doesn't exist");
     }
+
+    // EFFECTS: saves the user to file
+    private void saveUser() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(user);
+            jsonWriter.close();
+            System.out.println("Saved " + user.getUserName() + " to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads user from file
+    private void loadUser() {
+        try {
+            user = jsonReader.read();
+            System.out.println("Loaded " + user.getUserName() + " from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        }
+    }
+
+
+
+
+
+
+
 }
 
 
