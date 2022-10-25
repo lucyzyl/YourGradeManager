@@ -40,6 +40,8 @@ time-consuming daily basis.
 - As a user, I want to be able to create a course with a course name and a collection of assessments in a course.
 - As a user, I want to be able to add assignments grades inside one assessment category.
 - As a user, I want to be able to calculate my course grades automatically every time I add a new grade.
+- As a user, I want to be able to save my grade to file after I add a grade if I select save option.
+- As a user, I want to be able to load the user I created before if I select load option.
 
 
 

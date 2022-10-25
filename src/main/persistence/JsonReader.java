@@ -9,7 +9,6 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.stream.Stream;
 
 
@@ -50,7 +49,7 @@ public class JsonReader {
         return u;
     }
 
-    // MODIFIES: user
+    // MODIFIES: u
     // EFFECTS: parses courses from JSON object and adds them to workroom
     private void addCourses(User u, JSONObject jsonObject) {
         JSONArray jsonArray = jsonObject.getJSONArray("Courses");
@@ -60,17 +59,19 @@ public class JsonReader {
         }
     }
 
-    // MODIFIES: user
-    // EFFECTS: parses course from JSON object and adds it to workroom
+    // MODIFIES: u
+    // EFFECTS: parses course from JSON object and adds it to the user
     private void addCourse(User user, JSONObject jsonObject) {
         String courseName = jsonObject.getString("Course Name");
+        double courseGrade = jsonObject.getDouble("Course Grade");
         Course c = new Course(courseName);
+        c.setCourseGrade(courseGrade);
         user.addCourse(c);
         addAssessments(c, jsonObject);
     }
 
     // MODIFIES: c
-    // EFFECTS: parses assessments from JSON object and adds them to workroom
+    // EFFECTS: parses assessments from JSON object
     private void addAssessments(Course c, JSONObject jsonObject) {
         JSONArray jsonArray = jsonObject.getJSONArray("Course Assessments");
         for (Object json : jsonArray) {
@@ -80,16 +81,17 @@ public class JsonReader {
     }
 
     // MODIFIES: c
-    // EFFECTS: parses an assessment from JSON object and adds it to workroom
+    // EFFECTS: parses an assessment from JSON object and adds it to the course
     private void addAssessment(Course c, JSONObject jsonObject) {
         String assessmentName = jsonObject.getString("Assessment Name");
         double weight = jsonObject.getDouble("Assessment Weight");
+        double assessmentGrade = jsonObject.getDouble("Assessment Grade");
         JSONArray jsonArray = jsonObject.getJSONArray("Mark Breakdown");
         Assessment a = new Assessment(assessmentName, weight);
+        a.setAssessmentGrade(assessmentGrade);
         c.addAssessment(a);
-        //ArrayList<Double> assignmentScores = new ArrayList<>();
         for (Object json : jsonArray) {
-            int nextAssignmentScore = (int) json;
+            double nextAssignmentScore = Double.parseDouble(json.toString());
             a.addAssignmentGrade(nextAssignmentScore);
         }
     }

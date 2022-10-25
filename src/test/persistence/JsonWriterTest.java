@@ -60,13 +60,11 @@ public class JsonWriterTest {
             //read the user out of the file:
             JsonReader reader = new JsonReader("./data/testWriterGeneralUser.json");
             user = reader.read();
+
             assertEquals("testGeneralUser", user.getUserName());
-            assertEquals(testCourse, user.getCourses().get(0));
             assertEquals(1, user.getCourses().size());
             assertEquals("MATH200", user.getCourses().get(0).getCourseName());
-            assertEquals(testAssessment, user.getCourses().get(0).getCourseAssessments());
-            assertEquals("final", user.getCourses().get(0).getCourseAssessments().
-                    get(0).getName());
+            assertEquals("final", user.getCourses().get(0).getCourseAssessments().get(0).getName());
             assertEquals(100, user.getCourses().get(0).getCourseAssessments().
                     get(0).getAssignmentScores().get(0));
         } catch (IOException e) {

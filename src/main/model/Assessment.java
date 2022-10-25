@@ -7,7 +7,7 @@ import persistence.Writable;
 import java.util.ArrayList;
 
 // Represents an assessment having an assessment name, an assessment weight (0 < weight <= 1)
-// and grade of the assessment. The grade of the assessment is the weighted grade.
+// and grade of the assessment. The grade of the assessment is the weighted grade
 // An assessment with grade 100 and weight 0.2 have an assessment grade of 20)
 public class Assessment implements Writable {
 
@@ -17,8 +17,8 @@ public class Assessment implements Writable {
     private ArrayList<Double> assignmentScores;         //the collection of assignment grades within an assessment
 
     //REQUIRES: 0 < weight <= 1
-    //EFFECTS: construct an assessment with its name, weight, a list of assignment score and assessment weighted grade.
-    // The assignmentScores list is initialized as an empty list and the assessment weighted grade is 0 initially.
+    //EFFECTS: construct an assessment with its name, weight, a list of assignment score and assessment weighted grade
+    // The assignmentScores list is initialized as an empty list and the assessment weighted grade is 0 initially
     public Assessment(String assessmentName, double weight) {
         this.assessmentName = assessmentName;
         this.weight = weight;
@@ -28,14 +28,14 @@ public class Assessment implements Writable {
 
     //REQUIRES: Grade is a percentage grade and grade >= 0
     //MODIFIES: this
-    //EFFECTS: add an assignment grade to the assignmentScores list.
+    //EFFECTS: add an assignment grade to the assignmentScores list
     public void addAssignmentGrade(double grade) {
         assignmentScores.add(grade);
     }
 
     //MODIFIES: this
     //EFFECTS: calculate the weighted average of the assessment categories and update the assessment grade.
-    // Then return the weighted assessment grade.
+    // Then return the weighted assessment grade
     public double calculateAssessmentGrade() {
         int size = assignmentScores.size();
         double sum = 0;
@@ -49,7 +49,7 @@ public class Assessment implements Writable {
         return assessmentGrade;
     }
 
-    //EFFECTS: return true if assignmentScores is not empty. Otherwise, return false.
+    //EFFECTS: return true if assignmentScores is not empty. Otherwise, return false
     public boolean ifNonEmptyAssignmentScores() {
         if (assignmentScores.size() == 0) {
             return false;
@@ -57,7 +57,14 @@ public class Assessment implements Writable {
         return true;
     }
 
-    //
+    //setters:
+    //MODIFIES: this
+    //EFFECTS: set the assessment grade to the assessmentGrade passed in
+    public void setAssessmentGrade(double assessmentGrade) {
+        this.assessmentGrade = assessmentGrade;
+    }
+
+
     //getters:
     public String getName() {
         return assessmentName;

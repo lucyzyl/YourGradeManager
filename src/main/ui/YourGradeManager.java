@@ -49,6 +49,7 @@ public class YourGradeManager {
         }
     }
 
+    //MODIFIES: this
     //EFFECTS: create an account for the user with its username and return the user just created
     public void signUp() {
         jsonWriter = new JsonWriter(JSON_STORE);
@@ -81,7 +82,7 @@ public class YourGradeManager {
         System.out.println("----------------------------------------------------");
     }
 
-    //MODIFIES: this, user
+    //MODIFIES: this
     //EFFECTS: create a course with its course name and assessment weight set up
     //Then add the course to the user's course list
     public void createCourse(User user) {
@@ -222,13 +223,6 @@ public class YourGradeManager {
             System.out.println("Unable to read from file: " + JSON_STORE);
         }
     }
-
-
-
-
-
-
-
 }
 
 

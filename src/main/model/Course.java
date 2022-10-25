@@ -8,15 +8,15 @@ import java.util.ArrayList;
 
 import static java.lang.Math.round;
 
-//Represents a course having a course name, a collections of assessment and the current course grade.
+//Represents a course having a course name, a collections of assessment and the current course grade
 public class Course implements Writable {
 
     private String courseName;                        //the name of the course
     private ArrayList<Assessment> courseAssessments;  //the collection of assessments
     private double courseGrade;                       //the current grade of a course
 
-    //EFFECTS: construct a course with its course name, a list of course assessments and course grade.
-    //The course assessment list is initialized as an empty list and the course grade is initialized as 0.
+    //EFFECTS: construct a course with its course name, a list of course assessments and course grade
+    //The course assessment list is initialized as an empty list and the course grade is initialized as 0
     public Course(String courseName) {
         this.courseName = courseName;
         courseAssessments = new ArrayList<>();
@@ -30,7 +30,7 @@ public class Course implements Writable {
     }
 
     //MODIFIES: this
-    //EFFECTS: calculate the current course grade and update the course grade. The course grade will be rounded.
+    //EFFECTS: calculate the current course grade and update the course grade. The course grade will be rounded
     public void calculateCourseGrade() {
         int size = courseAssessments.size();
         double sum = 0;
@@ -45,6 +45,14 @@ public class Course implements Writable {
             courseGrade = 0;
         }
         courseGrade = round(sum / weight);
+    }
+
+
+    //setters:
+    //MODIFIES: this
+    //EFFECTS: set the course grade to the courseGrade passed in
+    public void setCourseGrade(double courseGrade) {
+        this.courseGrade = courseGrade;
     }
 
 
@@ -66,6 +74,7 @@ public class Course implements Writable {
         JSONObject json = new JSONObject();
         json.put("Course Name", courseName);
         json.put("Course Assessments", assessmentToJson());
+        json.put("Course Grade", courseGrade);
         return json;
     }
 
@@ -78,8 +87,4 @@ public class Course implements Writable {
         }
         return jsonArray;
     }
-
-
-
-
 }
