@@ -52,6 +52,7 @@ public class JsonReaderTest {
             Assessment testAssessment = testAssessments.get(0);
             assertEquals("final", testAssessment.getName());
             assertEquals(1, testAssessment.getAssignmentScores().size());
+            assertEquals(100, testAssessment.getAssignmentScores().get(0));
         } catch (IOException e) {
             fail("Couldn't read from file");
         }
