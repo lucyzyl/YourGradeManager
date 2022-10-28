@@ -13,11 +13,15 @@ public class JsonWriter {
     private PrintWriter writer;
     private String destination;
 
+    // Method was taken from JsonWriter in:
+    // https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
     // EFFECTS: constructs writer to write to destination file
     public JsonWriter(String destination) {
         this.destination = destination;
     }
 
+    // Method was taken from JsonWriter in:
+    // https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
     // MODIFIES: this
     // EFFECTS: opens writer; throws FileNotFoundException if destination file cannot
     // be opened for writing
@@ -25,6 +29,8 @@ public class JsonWriter {
         writer = new PrintWriter(new File(destination));
     }
 
+    // Method was taken from JsonWriter in:
+    // https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
     // MODIFIES: this
     // EFFECTS: writes JSON representation of user to file
     public void write(User user) {
@@ -32,12 +38,17 @@ public class JsonWriter {
         saveToFile(json.toString(TAB));
     }
 
+    // Method was taken from JsonWriter in:
+    // https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
     // MODIFIES: this
     // EFFECTS: closes writer
     public void close() {
         writer.close();
     }
 
+
+    // Method was taken from JsonWriter in:
+    // https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
     // MODIFIES: this
     // EFFECTS: writes string to file
     private void saveToFile(String json) {

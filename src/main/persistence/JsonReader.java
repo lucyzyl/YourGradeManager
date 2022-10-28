@@ -16,11 +16,15 @@ import java.util.stream.Stream;
 public class JsonReader {
     private String source;
 
+    // Method was taken from JsonReader in:
+    // https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
     // EFFECTS: constructs reader to read from source file
     public JsonReader(String source) {
         this.source = source;
     }
 
+    // Method was taken from JsonReader in:
+    // https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
     // EFFECTS: reads user from file and returns it;
     // throws IOException if an error occurs reading data from file
     public User read() throws IOException {
@@ -29,6 +33,8 @@ public class JsonReader {
         return parseUser(jsonObject);
     }
 
+    // Method was taken from JsonReader in:
+    // https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
     // EFFECTS: reads source file as string and returns it
     private String readFile(String source) throws IOException {
         StringBuilder contentBuilder = new StringBuilder();

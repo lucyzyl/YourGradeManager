@@ -201,6 +201,8 @@ public class YourGradeManager {
         throw new NoSuchElementException("The assessment doesn't exist");
     }
 
+    // Method was referred from WorkRoomApp in:
+    // https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
     // EFFECTS: saves the user to file
     private void saveUser() {
         try {
@@ -213,6 +215,8 @@ public class YourGradeManager {
         }
     }
 
+    // Method was referred from WorkRoomApp in:
+    // https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
     // MODIFIES: this
     // EFFECTS: loads user from file
     private void loadUser() {
