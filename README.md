@@ -46,6 +46,8 @@ time-consuming daily basis.
 ## Instruction for Grading:
 - You can create and add a course to a user by clicking the 'Create a Course' button in the main window.
 - You can add a grade to an assessment by clicking the 'Add grades to an existing course' button in the main window.
+- There will be a pop-up message with all courses in the user's course list printed to remind the user which courses they've created when you click the 'Add grades to an existing course'. 
+- There will be a pop-up message with all assessments type of a selected course printed to remind the user which assessments are in the given course when you click the 'Add grades to an existing course' and select the course you want to add grade for.
 - You can locate my visual component by running my application and checking the main window.
 - You can save the state of my application by clicking the 'Save' button located in the menu window.
 - You can reload the state of my application by clicking the 'Log In' button located in the main window.
