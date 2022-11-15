@@ -200,7 +200,6 @@ public class YourGradeManagerGui extends JFrame {
                 String courseName = JOptionPane.showInputDialog("Which course do you want to add grade for?");
                 Course course = searchCourse(courseName);
                 addGradesToAssessment(course);
-                saveUser();
             }
         });
     }
