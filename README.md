@@ -43,5 +43,10 @@ time-consuming daily basis.
 - As a user, I want to be able to save my grade to file after I add a grade if I select save option.
 - As a user, I want to be able to load the user I created last time if I select load option.
 
-
+## Instruction for Grading:
+- You can create and add a course to a user by clicking the 'Create a Course' button in the main window.
+- You can add a grade to an assessment by clicking the 'Add grades to an existing course' button in the main window.
+- You can locate my visual component by running my application and checking the main window.
+- You can save the state of my application by clicking the 'Save' button located in the menu window.
+- You can reload the state of my application by clicking the 'Log In' button located in the main window.
 

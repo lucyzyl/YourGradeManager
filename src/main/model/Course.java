@@ -69,6 +69,7 @@ public class Course implements Writable {
         return courseAssessments;
     }
 
+    // EFFECTS: returns this as JSON object
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();

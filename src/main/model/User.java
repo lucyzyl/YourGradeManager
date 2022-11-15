@@ -24,7 +24,6 @@ public class User implements Writable {
         courses.add(course);
     }
 
-
     //getters:
     public String getUserName() {
         return userName;
@@ -34,6 +33,7 @@ public class User implements Writable {
         return courses;
     }
 
+    // EFFECTS: returns this as JSON object
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
