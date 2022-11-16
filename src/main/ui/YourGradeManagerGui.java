@@ -32,8 +32,10 @@ public class YourGradeManagerGui extends JFrame {
     private JButton courseButton;
     private JButton gradesButton;
     private JButton saveButton;
+    private JButton displayButton;
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
+    private ImageIcon imageIcon;
 
 
     // Constructs the main window
@@ -80,7 +82,7 @@ public class YourGradeManagerGui extends JFrame {
     // MODIFIES: this
     // EFFECTS: set up image icon and add it to the display window
     public void addImageIcon() {
-        ImageIcon imageIcon = new ImageIcon(IMAGE_ICON);
+        imageIcon = new ImageIcon(IMAGE_ICON);
         Image image = imageIcon.getImage();
         Image scaledImage = image.getScaledInstance(200, 200, Image.SCALE_SMOOTH);
         imageIcon = new ImageIcon(scaledImage);
@@ -139,6 +141,7 @@ public class YourGradeManagerGui extends JFrame {
         addMenuButtons();
     }
 
+
     // MODIFIES: this
     // EFFECTS: set up the three buttons: 'Create a course', 'Add grades to an existing course', and 'Save'
     // and add functions associated with each button.
@@ -147,6 +150,8 @@ public class YourGradeManagerGui extends JFrame {
         createCourse();
         gradesButton = new JButton("Add grades to an existing course");
         addGrades();
+        displayButton = new JButton("Display Courses");
+        displayCourse();
         saveButton = new JButton("Save");
         saveUser();
     }
@@ -160,6 +165,7 @@ public class YourGradeManagerGui extends JFrame {
         menuPanel.setBorder(new EmptyBorder(new Insets(150, 200, 150, 200)));
         menuPanel.add(courseButton);
         menuPanel.add(gradesButton);
+        menuPanel.add(displayButton);
         menuPanel.add(saveButton);
         pack();
     }
@@ -198,8 +204,23 @@ public class YourGradeManagerGui extends JFrame {
                 JOptionPane.showMessageDialog(null,
                         "There are the courses in your account: " + printCourse());
                 String courseName = JOptionPane.showInputDialog("Which course do you want to add grade for?");
-                Course course = searchCourse(courseName);
-                addGradesToAssessment(course);
+                try {
+                    Course course = searchCourse(courseName);
+                    addGradesToAssessment(course);
+                } catch (NoSuchElementException nse) {
+                    JOptionPane.showMessageDialog(null, "This course doesn't exist");
+                }
+            }
+        });
+    }
+
+    // EFFECTS: display all courses and their grades in the user's course list
+    public void displayCourse() {
+        displayButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null,
+                        "There are the courses in your account:\n" + printCourseAndGrades());
             }
         });
     }
@@ -210,16 +231,20 @@ public class YourGradeManagerGui extends JFrame {
         JOptionPane.showMessageDialog(null,
                 "There are the assessments for " + course.getCourseName() + ": " + printAssessment(course));
         String assessmentName = JOptionPane.showInputDialog("Which assessment do you want to add grade for?");
-        Assessment assessment = searchAssessment(assessmentName, course);
-        double grade = Double.parseDouble(
-                JOptionPane.showInputDialog("Please enter your assignment grade in 100 point scale"));
-        assessment.addAssignmentGrade(grade);
-        assessment.calculateAssessmentGrade();
-        course.calculateCourseGrade();
-        JOptionPane.showMessageDialog(
-                this, "Your grades are added to the assessment: " + assessment.getName());
-        JOptionPane.showMessageDialog(
-                this, "Your course grade is " + course.getCourseGrade() + "%");
+        try {
+            Assessment assessment = searchAssessment(assessmentName, course);
+            double grade = Double.parseDouble(
+                    JOptionPane.showInputDialog("Please enter your assignment grade in 100 point scale"));
+            assessment.addAssignmentGrade(grade);
+            assessment.calculateAssessmentGrade();
+            course.calculateCourseGrade();
+            JOptionPane.showMessageDialog(
+                    this, "Your grades are added to the assessment: " + assessment.getName());
+            JOptionPane.showMessageDialog(
+                    this, "Your course grade is " + course.getCourseGrade() + "%");
+        } catch (NoSuchElementException nse) {
+            JOptionPane.showMessageDialog(null, "This assessment doesn't exist");
+        }
     }
 
     //EFFECTS: print all courses in the user's course list
@@ -231,6 +256,18 @@ public class YourGradeManagerGui extends JFrame {
             allCourses = allCourses + " " + course;
         }
         return allCourses;
+    }
+
+    //EFFECTS: print all courses and their associated grades in the user's course list
+    public String printCourseAndGrades() {
+        int size = user.getCourses().size();
+        String allCoursesAndGrade = "";
+        for (int i = 0; i <= size - 1; i++) {
+            String courseAndGrade = user.getCourses().get(i).getCourseName() + ": "
+                    + user.getCourses().get(i).getCourseGrade();
+            allCoursesAndGrade = allCoursesAndGrade + " " + courseAndGrade + "\n";
+        }
+        return allCoursesAndGrade;
     }
 
     //EFFECTS: print all assessment in the course's assessment list

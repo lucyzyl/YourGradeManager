@@ -42,13 +42,13 @@ time-consuming daily basis.
 - As a user, I want to be able to calculate my course grades automatically every time I add a new grade.
 - As a user, I want to be able to save my grade to file after I add a grade if I select save option.
 - As a user, I want to be able to load the user I created last time if I select load option.
+- This one is newly added: As a user, I want to be able to see all courses and their associated grades.
 
 ## Instruction for Grading:
-- You can create and add a course to a user by clicking the 'Create a Course' button in the main window.
-- You can add a grade to an assessment by clicking the 'Add grades to an existing course' button in the main window.
-- There will be a pop-up message with all courses in the user's course list printed to remind the user which courses they've created when you click the 'Add grades to an existing course'. 
-- There will be a pop-up message with all assessments type of a selected course printed to remind the user which assessments are in the given course when you click the 'Add grades to an existing course' and select the course you want to add grade for.
+- You can generate the event of creating and adding a course to a user by clicking the 'Create a Course' button in the menu window.
+- You can generate the event of adding a grade to an assessment inside the course by clicking the 'Add grades to an existing course' button in the menu window.
+- You can generate the event of displaying all courses and their associated grades in the user's course list when you click the 'Display Courses' button in the menu window.
 - You can locate my visual component by running my application and checking the main window.
-- You can save the state of my application by clicking the 'Save' button located in the menu window.
+- You can save the state of my application by clicking the 'Save' button located in the main window.
 - You can reload the state of my application by clicking the 'Log In' button located in the main window.
 
