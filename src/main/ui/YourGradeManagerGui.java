@@ -69,6 +69,7 @@ public class YourGradeManagerGui extends JFrame {
     }
 
 
+    // MODIFIES: this
     // EFFECTS: add the two buttons 'Sign Up' and 'Log In' to the display window
     public void addButtons() {
         BoxLayout boxLayout = new BoxLayout(panel, BoxLayout.Y_AXIS);
@@ -109,6 +110,7 @@ public class YourGradeManagerGui extends JFrame {
         });
     }
 
+    // MODIFIES: this
     // EFFECTS: When the Login button is clicked. Show a reloading message dialog and a welcome message dialog
     public void logIn() {
         loginButton.addActionListener(new ActionListener() {
@@ -247,7 +249,7 @@ public class YourGradeManagerGui extends JFrame {
         }
     }
 
-    //EFFECTS: print all courses in the user's course list
+    //EFFECTS: return all courses' names in the user's course list
     public String printCourse() {
         int size = user.getCourses().size();
         String allCourses = "";
@@ -258,7 +260,7 @@ public class YourGradeManagerGui extends JFrame {
         return allCourses;
     }
 
-    //EFFECTS: print all courses and their associated grades in the user's course list
+    //EFFECTS: return all courses' name and their associated grades in the user's course list
     public String printCourseAndGrades() {
         int size = user.getCourses().size();
         String allCoursesAndGrade = "";
@@ -270,7 +272,7 @@ public class YourGradeManagerGui extends JFrame {
         return allCoursesAndGrade;
     }
 
-    //EFFECTS: print all assessment in the course's assessment list
+    //EFFECTS: return all assessments' name in the course's assessment list
     public String printAssessment(Course course) {
         int size = course.getCourseAssessments().size();
         String allAssessments = "";
@@ -281,7 +283,7 @@ public class YourGradeManagerGui extends JFrame {
         return allAssessments;
     }
 
-    //EFFECTS: find the course given a course name
+    //EFFECTS: return the course given a course name
     public Course searchCourse(String courseName) {
         int size = user.getCourses().size();
         for (int i = 0; i <= size - 1; i++) {
@@ -292,7 +294,7 @@ public class YourGradeManagerGui extends JFrame {
         throw new NoSuchElementException("The course doesn't exist");
     }
 
-    //EFFECTS: Given an assessment name, find the assessment in a course list.
+    //EFFECTS: Given an assessment name, return the assessment in a course list.
     public Assessment searchAssessment(String assessmentName, Course course) {
         int size = course.getCourseAssessments().size();
         for (int i = 0; i <= size - 1; i++) {
