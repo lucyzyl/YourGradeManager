@@ -18,7 +18,7 @@ public class Assessment implements Writable {
 
     //REQUIRES: 0 < weight <= 1
     //EFFECTS: construct an assessment with its name, weight, a list of assignment score and assessment weighted grade
-    // The assignmentScores list is initialized as an empty list and the assessment weighted grade is 0 initially
+    //The assignmentScores list is initialized as an empty list and the assessment weighted grade is 0 initially
     public Assessment(String assessmentName, double weight) {
         this.assessmentName = assessmentName;
         this.weight = weight;

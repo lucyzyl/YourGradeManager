@@ -52,3 +52,79 @@ time-consuming daily basis.
 - You can save the state of my application by clicking the 'Save' button located in the main window.
 - You can reload the state of my application by clicking the 'Log In' button located in the main window.
 
+
+## Phase 4: Task 2:
+Sun Nov 27 12:32:56 PST 2022
+Course added: math200
+
+
+Sun Nov 27 12:33:05 PST 2022
+assessment added: hw
+
+
+Sun Nov 27 12:33:12 PST 2022
+assessment added: mt
+
+
+Sun Nov 27 12:33:21 PST 2022
+assessment added: final
+
+
+Sun Nov 27 12:33:39 PST 2022
+assignment grade 100.0 added to: hw
+
+
+Sun Nov 27 12:33:53 PST 2022
+assignment grade 100.0 added to: mt
+
+
+Sun Nov 27 12:34:07 PST 2022
+Course added: cpsc210
+
+
+Sun Nov 27 12:34:16 PST 2022
+assessment added: hw
+
+
+
+Process finished with exit code 0
+
+## Phase 4: Task 3:
+1. The hierarchical of my design can be improved by constructing a new interface called **GradableComponent** implemented 
+by both the Course class and Assessment class.
+Notice that the 'addAssignmentGrade' method in the Assessment class and the 'addAssessment' method in the Course class have
+very similar behaviour in terms of adding Xs to Y's field (ListofX).
+Similarly, the 'calculateAssessmentGrade' method in the Assessment class and the 
+'calculateCourseGrade' in the Course class share commonalities in terms of calculating average, be it assignment grade 
+or assessment grade both represented as the primitive type double.
+With an interface GradebleComponent, I can specify the generic methods called 'addGradableComponent' and 
+'calculatingGradableComponent', with the implementations provided in the Course and Assessment class respectively
+to reduce code duplication.
+2. My design can be more sustainable by establishing an bidirectional relationship between Course and Assessment.
+Notice the events printed to the console that when the user create a new course and add an assessment to a course, the
+description is in the form of "assessment added: (assessmentName)". However, it does not show which course the assessment
+is being added to. This is because the assessment object doesn't have a course field. Once the bidirectional relationship
+is established between Course and Assessment, the user can get feedback on which assessment is added to which course.
+3. The cohesion of YourGradeManagerGui Class can be improved by moving some methods to the 
+Assessment, Course and User class in the model package. For example, the 'printCourse', 'printCourseAndGrades' and 'searchCourse' method
+in the YourGradeManagerGui class should be rearranged to the User class because these three methods all access the 
+User object's field and perform the operations similar to 'ToString' on it. I will also rename the 'printCourse' 
+and 'printCourseAndGrades' to 'coursesToString' and 'CoursesAndGradesToString' to better inform another developer 
+who read my code about what these methods are handling.
+Besides, the 'printAssessment' and 'searchAssessment' in the YourGradeManagerGui class should be rearranged to the 
+Course class because these two methods both access the Course object's field and perform operations similar to 
+'ToString' on it. I will also rename the 'printAssessment' method to 'AssessmentsToString' to better inform another 
+developer who read my code about what these methods are handling.
+Furthermore, my application currently has three methods that are responsible for the ToString behaviour and two methods 
+that are responsible for the searching behaviour. In the future, if my application needs more methods to perform the 
+ToString and seraching behaviour, I will create two classes called ToStringManager and SearchingManager and then 
+refactor all of methods that centered these two concepts.
+4. By the single responsibility principle, each class should be centered around one cohesive concept. Following this
+principle, I can refactor my YourGradeManagerGui class into two classes: YourGradeManagerMainWindow
+and YourGradeManagerMenuWindow. The YourGradeManagerMainWindow class would be centered around all data and behaviour associated with
+the main window of my application. While the YourGradeManagerMenuWindow class would be centered around all data and behaviour
+associated with the menu window of my application.
+
+
+
+

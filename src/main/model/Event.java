@@ -11,6 +11,7 @@ public class Event {
     private Date dateLogged;
     private String description;
 
+
     /**
      * Creates an event with the given description
      * and the current date/time stamp.
@@ -51,6 +52,7 @@ public class Event {
 
         return (this.dateLogged.equals(otherEvent.dateLogged) && this.description.equals(otherEvent.description));
     }
+
 
     @Override
     public int hashCode() {

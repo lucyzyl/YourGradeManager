@@ -17,10 +17,13 @@ public class EventTest {
         d = Calendar.getInstance().getTime();
     }
 
+    //EXPLANATION FOR POSSIBLE FAILING TEST: these tests might fail if time at which line (2) below is executed
+    //is different from time that line (1) is executed.  Lines (1) and (2) must
+    //run in same millisecond for this test to make sense and pass.
     @Test
     public void testEvent() {
-        assertEquals("Course added: cpsc210", e.getDescription());
-        assertEquals(d, e.getDate());
+        assertEquals("Course added: cpsc210", e.getDescription()); //(1)
+        assertEquals(d, e.getDate()); //(2)
     }
 
     @Test
