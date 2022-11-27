@@ -27,6 +27,7 @@ public class Course implements Writable {
     // EFFECTS: add an assessment into the course assessments list.
     public void addAssessment(Assessment assessment) {
         courseAssessments.add(assessment);
+        EventLog.getInstance().logEvent(new Event("assessment added: " + assessment.getName()));
     }
 
     //MODIFIES: this

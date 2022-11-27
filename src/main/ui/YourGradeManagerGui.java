@@ -2,6 +2,8 @@ package ui;
 
 import model.Assessment;
 import model.Course;
+import model.Event;
+import model.EventLog;
 import model.User;
 import persistence.JsonReader;
 import persistence.JsonWriter;
@@ -33,6 +35,7 @@ public class YourGradeManagerGui extends JFrame {
     private JButton gradesButton;
     private JButton saveButton;
     private JButton displayButton;
+    private JButton quitButton;
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
     private ImageIcon imageIcon;
@@ -156,6 +159,8 @@ public class YourGradeManagerGui extends JFrame {
         displayCourse();
         saveButton = new JButton("Save");
         saveUser();
+        quitButton = new JButton("Quit");
+        quit();
     }
 
     // MODIFIES: this
@@ -169,6 +174,7 @@ public class YourGradeManagerGui extends JFrame {
         menuPanel.add(gradesButton);
         menuPanel.add(displayButton);
         menuPanel.add(saveButton);
+        menuPanel.add(quitButton);
         pack();
     }
 
@@ -338,5 +344,21 @@ public class YourGradeManagerGui extends JFrame {
                 }
             }
         });
+    }
+
+    public void quit() {
+        quitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                printEvents(EventLog.getInstance());
+                System.exit(0);
+            }
+        });
+    }
+
+    public void printEvents(EventLog el) {
+        for (Event next : el) {
+            System.out.println(next.toString() + "\n\n");
+        }
     }
 }

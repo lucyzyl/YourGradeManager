@@ -31,6 +31,7 @@ public class Assessment implements Writable {
     //EFFECTS: add an assignment grade to the assignmentScores list
     public void addAssignmentGrade(double grade) {
         assignmentScores.add(grade);
+        EventLog.getInstance().logEvent(new Event("assignment grade " + grade + " added to: " + getName()));
     }
 
     //MODIFIES: this

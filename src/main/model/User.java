@@ -22,6 +22,7 @@ public class User implements Writable {
     //EFFECTS: add a course to a user's course list
     public void addCourse(Course course) {
         courses.add(course);
+        EventLog.getInstance().logEvent(new Event("Course added: " + course.getCourseName()));
     }
 
     //getters:
