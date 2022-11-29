@@ -1,8 +1,6 @@
 package persistence;
 
-import model.Assessment;
-import model.Course;
-import model.User;
+import model.*;
 import org.json.*;
 
 import java.io.IOException;
@@ -30,6 +28,7 @@ public class JsonReader {
     public User read() throws IOException {
         String jsonData = readFile(source);
         JSONObject jsonObject = new JSONObject(jsonData);
+        EventLog.getInstance().logEvent(new Event("Data loaded"));
         return parseUser(jsonObject);
     }
 
@@ -42,7 +41,6 @@ public class JsonReader {
         try (Stream<String> stream = Files.lines(Paths.get(source), StandardCharsets.UTF_8)) {
             stream.forEach(s -> contentBuilder.append(s));
         }
-
         return contentBuilder.toString();
     }
 

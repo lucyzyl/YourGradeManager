@@ -54,40 +54,24 @@ time-consuming daily basis.
 
 
 ## Phase 4: Task 2:
-Sun Nov 27 12:32:56 PST 2022
-Course added: math200
+Mon Nov 28 17:17:30 PST 2022
+Data loaded
 
 
-Sun Nov 27 12:33:05 PST 2022
+Mon Nov 28 17:17:30 PST 2022
+Course added: math
+
+
+Mon Nov 28 17:17:30 PST 2022
 assessment added: hw
 
 
-Sun Nov 27 12:33:12 PST 2022
-assessment added: mt
-
-
-Sun Nov 27 12:33:21 PST 2022
-assessment added: final
-
-
-Sun Nov 27 12:33:39 PST 2022
+Mon Nov 28 17:17:42 PST 2022
 assignment grade 100.0 added to: hw
 
 
-Sun Nov 27 12:33:53 PST 2022
-assignment grade 100.0 added to: mt
-
-
-Sun Nov 27 12:34:07 PST 2022
-Course added: cpsc210
-
-
-Sun Nov 27 12:34:16 PST 2022
-assessment added: hw
-
-
-
-Process finished with exit code 0
+Mon Nov 28 17:17:47 PST 2022
+Data saved
 
 ## Phase 4: Task 3:
 1. The hierarchical of my design can be improved by constructing a new interface called **GradableComponent** implemented 
